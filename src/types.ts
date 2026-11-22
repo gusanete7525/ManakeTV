@@ -111,7 +111,25 @@ export interface FluxSettings {
   sweepIntervalMinutes: number;
   /** ISO timestamp of the last interval Barrido. */
   lastIntervalSweepAt?: string;
+  /** Preferred HTMLMediaElement audio output deviceId (Chromium/Electron). */
+  preferredAudioSinkId?: string;
 }
+
+/** Starred library items + public feeds (Onda-style Favoritos). */
+export interface FluxFavorites {
+  mediaIds: string[];
+  feedIds: string[];
+}
+
+export type AppView =
+  | "home"
+  | "podcast_tv"
+  | "agregados"
+  | "favorites"
+  | "parrilla"
+  | "barrido"
+  | "library"
+  | "sources";
 
 export interface FluxStore {
   version: 2;
@@ -123,6 +141,7 @@ export interface FluxStore {
   proposals: Record<string, SweepProposal>;
   sweepLog: SweepLogEntry[];
   settings: FluxSettings;
+  favorites: FluxFavorites;
 }
 
 export function newId(prefix: string): string {

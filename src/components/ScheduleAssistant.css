@@ -1,0 +1,159 @@
+.assistant {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.assistant__header {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.assistant__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.assistant__hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.assistant__steps {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.assistant__steps .is-active {
+  color: var(--accent-hot);
+}
+
+.assistant__steps .is-done {
+  color: var(--ink);
+}
+
+.assistant__panel {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.assistant__field {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.assistant__field input,
+.assistant__field select {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 0.5rem 0.6rem;
+}
+
+.assistant__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.assistant__picked {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.assistant__picked strong {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.assistant__empty {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.assistant__summary {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.assistant__summary li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.35rem;
+}
+
+.assistant__summary span {
+  color: var(--muted);
+}
+
+.assistant__summary strong {
+  text-align: right;
+}
+
+.assistant__warn {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--warn);
+}
+
+.assistant__nav {
+  display: flex;
+  gap: 0.45rem;
+  justify-content: flex-end;
+}
+
+.assistant__btn {
+  font: inherit;
+  font-weight: 700;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+
+.assistant__btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.assistant__btn--ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
