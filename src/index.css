@@ -1,19 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap");
 
 :root {
-  --font-body: "DM Sans", sans-serif;
-  --font-display: "Instrument Serif", Georgia, serif;
+  /* Podcast-app pattern (evokes Spanish radio apps — not trademarked logos) */
+  --font-body: "Manrope", sans-serif;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
 
-  --bg-deep: #0c1210;
-  --bg: #121a17;
-  --surface: #1a2420;
-  --ink: #e8efe9;
-  --muted: #8a9a90;
-  --line: #2a3832;
-  --accent: #c4a35a;
-  --on-accent: #12140f;
-  --glow: #3d6b5a;
-  --warn: #e0a090;
+  --bg-deep: #12141a;
+  --bg: #1c1e22;
+  --surface: #252830;
+  --surface-2: #2c3038;
+  --ink: #ffffff;
+  --muted: #9aa0a8;
+  --line: #343942;
+  --accent: #3b985c;
+  --accent-hot: #45b06b;
+  --on-accent: #ffffff;
+  --live: #e2262d;
+  --glow: #2d6b45;
+  --warn: #f0a090;
+  --radius: 6px;
 
   font-family: var(--font-body);
   font-synthesis: none;
@@ -43,9 +48,9 @@ body {
 button,
 input,
 select {
-  border-radius: 0;
+  border-radius: var(--radius);
 }
 
 a {
-  color: var(--accent);
+  color: var(--accent-hot);
 }

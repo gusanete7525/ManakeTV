@@ -13,7 +13,7 @@ function createWindow() {
     height: 960,
     minWidth: 960,
     minHeight: 640,
-    backgroundColor: "#0c1210",
+    backgroundColor: "#1c1e22",
     title: "FluxTV",
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),

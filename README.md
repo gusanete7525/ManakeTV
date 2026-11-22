@@ -21,7 +21,7 @@ Project store: `/cursor/stores/self/docs/fluxtv-plan.md`
 
 ## UI
 
-Layout and tokens follow the Figma file [FluxTV UI](https://www.figma.com/design/y2EWN3kBvXYMH6CL3h4xl4) (`fileKey` `y2EWN3kBvXYMH6CL3h4xl4`): gold `#c4a35a`, deep green-black surfaces, **Instrument Serif** + **DM Sans**.
+Podcast-app browsing pattern (dense episode lists, bold condensed program titles, dark Shark surfaces, Chateau-green accent + live red on-air cue) — inspired by public Spanish radio/podcast apps, **without** copying trademarks or logos. Fonts: **Barlow Condensed** + **Manrope**. Figma: [FluxTV UI](https://www.figma.com/design/y2EWN3kBvXYMH6CL3h4xl4).
 
 ## Browser limits (local folders)
 

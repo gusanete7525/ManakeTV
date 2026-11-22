@@ -320,7 +320,7 @@ export default function App() {
         <div className="app__brand-block">
           <p className="app__brand">FluxTV</p>
           <p className="app__tagline">
-            Your timed program — legal sources only
+            Tu parrilla a la carta — fuentes legales · podcast-app style
           </p>
         </div>
         <div className="app__air">
