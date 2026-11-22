@@ -1,5 +1,5 @@
 import { mediaCanonicalKey } from "./canonicalize";
-import { fetchAndParseFeed } from "./feeds";
+import { fetchAndParseFeed, platformIdForChannel } from "./feeds";
 import { probeUrl } from "./viability";
 import type {
   FeedConfig,
@@ -9,6 +9,11 @@ import type {
   SweepProposal,
 } from "../types";
 import { newId } from "../types";
+
+/** Cap per feed so frequent Barrido stays practical (feeds can list 300–600 items). */
+export const MAX_ITEMS_PER_FEED = 25;
+
+export type SweepTrigger = "manual" | "scheduled" | "interval";
 
 export type SweepResult = {
   storePatch: Partial<
@@ -32,7 +37,7 @@ function existingCanonicals(store: FluxStore): Set<string> {
 
 export async function runSweep(
   store: FluxStore,
-  trigger: "manual" | "scheduled",
+  trigger: SweepTrigger,
   scheduledKey?: string,
 ): Promise<SweepResult> {
   const startedAt = new Date().toISOString();
@@ -55,7 +60,10 @@ export async function runSweep(
   for (const feed of enabledFeeds) {
     feedsChecked += 1;
     try {
-      const items = await fetchAndParseFeed(feed.url!);
+      const items = (await fetchAndParseFeed(feed.url!)).slice(
+        0,
+        MAX_ITEMS_PER_FEED,
+      );
       for (const item of items) {
         const canonicalKey = mediaCanonicalKey({
           url: item.url,
@@ -124,6 +132,9 @@ export async function runSweep(
   if (trigger === "scheduled" && scheduledKey) {
     settings.lastScheduledSweepKey = scheduledKey;
   }
+  if (trigger === "interval") {
+    settings.lastIntervalSweepAt = finishedAt;
+  }
 
   return {
     proposals: added,
@@ -149,7 +160,7 @@ export function proposalToMedia(
     canonicalKey: proposal.canonicalKey,
     feedId: proposal.feedId,
     channelId: proposal.channelId,
-    platformId: feed?.channelId === "tve1" ? "rtve" : undefined,
+    platformId: platformIdForChannel(feed?.channelId ?? proposal.channelId),
     notes: proposal.summary,
     viable: true,
     lastCheckedAt: new Date().toISOString(),

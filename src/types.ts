@@ -7,7 +7,12 @@ export type ChannelId =
   | "antena3"
   | "cuatro"
   | "telecinco"
-  | "lasexta";
+  | "lasexta"
+  | "onda_cero"
+  | "cadena_ser"
+  | "cope"
+  | "europa_fm"
+  | "melodia_fm";
 
 export interface MediaItem {
   id: string;
@@ -79,7 +84,7 @@ export interface SweepLogEntry {
   id: string;
   startedAt: string;
   finishedAt: string;
-  trigger: "manual" | "scheduled";
+  trigger: "manual" | "scheduled" | "interval";
   feedsChecked: number;
   urlsProbed: number;
   proposed: number;
@@ -99,8 +104,13 @@ export interface FluxSettings {
   timezone: string;
   clockMode: "wall" | "simulated";
   simulatedNow?: string;
+  /** Thrice-daily Barrido hours (Europe/Madrid wall clock). */
   sweepHoursMadrid: [number, number, number];
   lastScheduledSweepKey?: string;
+  /** How often enabled podcast RSS feeds refresh while the app is open. */
+  sweepIntervalMinutes: number;
+  /** ISO timestamp of the last interval Barrido. */
+  lastIntervalSweepAt?: string;
 }
 
 export interface FluxStore {

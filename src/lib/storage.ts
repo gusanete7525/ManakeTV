@@ -1,8 +1,17 @@
 import { defaultFeeds } from "./feeds";
-import { madridDateKey, type FluxStore } from "../types";
+import { madridDateKey, type FluxSettings, type FluxStore } from "../types";
 
 const STORAGE_KEY = "fluxtv-store-v2";
 const LEGACY_KEY = "fluxtv-store-v1";
+
+export function defaultSettings(): FluxSettings {
+  return {
+    timezone: "Europe/Madrid",
+    clockMode: "wall",
+    sweepHoursMadrid: [10, 16, 22],
+    sweepIntervalMinutes: 5,
+  };
+}
 
 export function emptyStore(): FluxStore {
   const today = madridDateKey();
@@ -23,11 +32,7 @@ export function emptyStore(): FluxStore {
     folders: {},
     proposals: {},
     sweepLog: [],
-    settings: {
-      timezone: "Europe/Madrid",
-      clockMode: "wall",
-      sweepHoursMadrid: [10, 16, 22],
-    },
+    settings: defaultSettings(),
   };
 }
 
@@ -37,7 +42,7 @@ export function loadStore(): FluxStore {
     if (raw) {
       const parsed = JSON.parse(raw) as FluxStore;
       if (parsed?.version === 2) {
-        return ensureToday(mergeFeeds(parsed));
+        return ensureToday(mergeSettings(mergeFeeds(parsed)));
       }
     }
     const legacy = localStorage.getItem(LEGACY_KEY);
@@ -76,6 +81,13 @@ function mergeFeeds(store: FluxStore): FluxStore {
     }
   }
   return { ...store, feeds };
+}
+
+function mergeSettings(store: FluxStore): FluxStore {
+  return {
+    ...store,
+    settings: { ...defaultSettings(), ...store.settings },
+  };
 }
 
 function ensureToday(store: FluxStore): FluxStore {
