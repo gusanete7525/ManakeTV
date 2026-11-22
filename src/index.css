@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap");
+
+:root {
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+
+  --bg-deep: #0c1210;
+  --bg: #121a17;
+  --surface: #1a2420;
+  --ink: #e8efe9;
+  --muted: #8a9a90;
+  --line: #2a3832;
+  --accent: #c4a35a;
+  --on-accent: #12140f;
+  --glow: #3d6b5a;
+
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100svh;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+button,
+input,
+select {
+  border-radius: 0;
+}
+
+a {
+  color: var(--accent);
+}

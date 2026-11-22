@@ -1,0 +1,182 @@
+.app {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+}
+
+.app__atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 15% 0%,
+      color-mix(in srgb, var(--accent) 22%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 90% 80%,
+      color-mix(in srgb, var(--glow) 18%, transparent),
+      transparent 50%
+    ),
+    linear-gradient(165deg, var(--bg-deep), var(--bg) 45%, var(--bg-deep));
+}
+
+.app__masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.5rem clamp(1rem, 3vw, 2.5rem) 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.app__brand {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.app__tagline {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 28ch;
+}
+
+.app__air {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.75rem;
+  row-gap: 0.15rem;
+  align-items: baseline;
+  min-width: min(100%, 16rem);
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+}
+
+.app__air-label {
+  grid-column: 1;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.app__air-title {
+  grid-column: 1 / -1;
+  font-size: 1.05rem;
+}
+
+.app__clock {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.app__main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.75fr);
+  gap: 1.25rem;
+  padding: 1.25rem clamp(1rem, 3vw, 2.5rem) 1.5rem;
+  min-height: 0;
+}
+
+.app__side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-height: 0;
+}
+
+.placer {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.placer__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.placer__hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.placer__field {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.placer__field input,
+.placer__field select {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 0.45rem 0.55rem;
+}
+
+.placer__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.placer__submit {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.placer__submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.placer__submit:not(:disabled):hover {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+.app__footer {
+  padding: 0.75rem clamp(1rem, 3vw, 2.5rem) 1.25rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 860px) {
+  .app__main {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline__rail {
+    min-height: 22rem;
+  }
+}
