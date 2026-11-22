@@ -1,0 +1,79 @@
+.onair {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0.85rem;
+  min-height: 12rem;
+}
+
+.onair__header {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.onair__badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.onair__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.onair__next {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.onair__stage {
+  flex: 1;
+  min-height: 10rem;
+  background: color-mix(in srgb, var(--bg-deep) 80%, black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+.onair__video {
+  width: 100%;
+  max-height: 18rem;
+  background: #000;
+}
+
+.onair__idle,
+.onair__page {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  max-width: 42ch;
+}
+
+.onair__page {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.onair__page a {
+  word-break: break-all;
+}
+
+.onair__audio {
+  width: 100%;
+}
+
+.onair__hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}

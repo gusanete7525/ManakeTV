@@ -1,0 +1,126 @@
+.library {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  height: 100%;
+  min-height: 0;
+}
+
+.library__header {
+  flex-shrink: 0;
+}
+
+.library__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.library__hint {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.library__search,
+.library__field {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.library__search input,
+.library__field input,
+.library__field select {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 0.45rem 0.55rem;
+}
+
+.library__form {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.library__submit,
+.library__local button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.5rem 0.7rem;
+  border: none;
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+
+.library__local {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.library__local button {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.library__local button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.library__limit {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  flex: 1 1 100%;
+}
+
+.library__error {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #c97a6a;
+}
+
+.library__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 14rem;
+}
+
+.library__empty {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.library__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.65rem 0.75rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.library__meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
