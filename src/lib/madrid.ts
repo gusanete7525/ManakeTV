@@ -111,3 +111,34 @@ export function nextSweepLabel(
   const first = sorted[0] ?? 10;
   return `mañana ${String(first).padStart(2, "0")}:00`;
 }
+
+/** True when an interval Barrido should run (app open / clock tick). */
+export function dueIntervalSweep(
+  now: Date,
+  intervalMinutes: number,
+  lastIntervalSweepAt: string | undefined,
+): boolean {
+  if (!Number.isFinite(intervalMinutes) || intervalMinutes <= 0) return false;
+  if (!lastIntervalSweepAt) return true;
+  const last = Date.parse(lastIntervalSweepAt);
+  if (Number.isNaN(last)) return true;
+  return now.getTime() - last >= intervalMinutes * 60_000;
+}
+
+export function nextIntervalSweepLabel(
+  now: Date,
+  intervalMinutes: number,
+  lastIntervalSweepAt: string | undefined,
+): string {
+  if (!Number.isFinite(intervalMinutes) || intervalMinutes <= 0) {
+    return "interval off";
+  }
+  if (!lastIntervalSweepAt) return `in ≤${intervalMinutes} min`;
+  const last = Date.parse(lastIntervalSweepAt);
+  if (Number.isNaN(last)) return `in ≤${intervalMinutes} min`;
+  const dueAt = last + intervalMinutes * 60_000;
+  const remainMs = dueAt - now.getTime();
+  if (remainMs <= 0) return "due now";
+  const remainMin = Math.ceil(remainMs / 60_000);
+  return `in ~${remainMin} min`;
+}

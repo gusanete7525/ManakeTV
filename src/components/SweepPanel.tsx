@@ -4,6 +4,8 @@ import "./SweepPanel.css";
 
 type SweepPanelProps = {
   nextLabel: string;
+  intervalLabel: string;
+  intervalMinutes: number;
   madridClock: string;
   sweeping: boolean;
   lastLog: SweepLogEntry | null;
@@ -15,6 +17,8 @@ type SweepPanelProps = {
 
 export function SweepPanel({
   nextLabel,
+  intervalLabel,
+  intervalMinutes,
   madridClock,
   sweeping,
   lastLog,
@@ -28,14 +32,16 @@ export function SweepPanel({
       <header className="sweep__header">
         <h2 className="sweep__title">Barrido</h2>
         <p className="sweep__hint">
-          Auto 10:00 · 16:00 · 22:00 Europe/Madrid. Refreshes public feeds and
-          re-checks your URLs. Dedupes by canonical URL/title; skips dead links.
+          Podcast feeds refresh about every {intervalMinutes} min while open,
+          plus 10:00 · 16:00 · 22:00 Europe/Madrid. Dedupes by canonical
+          URL/title; skips dead links. No Digi/Movistar login.
         </p>
       </header>
 
       <div className="sweep__meta">
         <span>Madrid {madridClock}</span>
-        <span>Next {nextLabel}</span>
+        <span>Next daily {nextLabel}</span>
+        <span>Next interval {intervalLabel}</span>
       </div>
 
       <button

@@ -11,10 +11,11 @@ export function ChannelSources({ feeds, onToggle }: ChannelSourcesProps) {
   return (
     <section className="channels" aria-label="Channel sources">
       <header>
-        <h2 className="channels__title">TDT sources</h2>
+        <h2 className="channels__title">TDT & radio sources</h2>
         <p className="channels__hint">
-          Public RSS where documented. Commercial catch-up without a free public
-          API stays stubbed — paste your own URLs instead of scraping.
+          Public RSS where documented (RTVE/RNE, Onda Cero, SER, COPE, Europa
+          FM, Melodía FM). Commercial TV catch-up without a free public API
+          stays stubbed — paste your own URLs; never Digi/Movistar login.
         </p>
       </header>
       <ul className="channels__list">

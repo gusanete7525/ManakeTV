@@ -6,14 +6,20 @@ import { SweepPanel } from "./components/SweepPanel";
 import { Timeline } from "./components/Timeline";
 import { mediaCanonicalKey } from "./lib/canonicalize";
 import {
+  dueIntervalSweep,
   dueSweepHour,
   madridClockLabel,
+  nextIntervalSweepLabel,
   nextSweepLabel,
   sweepKeyForHour,
 } from "./lib/madrid";
 import { findOverlaps, wouldOverlap } from "./lib/overlap";
 import { loadStore, saveStore } from "./lib/storage";
-import { proposalToMedia, runSweep } from "./lib/sweeps";
+import {
+  proposalToMedia,
+  runSweep,
+  type SweepTrigger,
+} from "./lib/sweeps";
 import {
   madridDateKey,
   newId,
@@ -126,7 +132,7 @@ export default function App() {
     ? store.media[nextSlot.mediaId]?.title
     : undefined;
 
-  async function doSweep(trigger: "manual" | "scheduled", key?: string) {
+  async function doSweep(trigger: SweepTrigger, key?: string) {
     if (sweepingRef.current) return;
     sweepingRef.current = true;
     setSweeping(true);
@@ -145,17 +151,25 @@ export default function App() {
     }
   }
 
-  // Scheduled sweeps 10 / 16 / 22 Europe/Madrid
+  // Interval podcast refresh (default every 5 min) + thrice-daily 10 / 16 / 22 Madrid
   useEffect(() => {
-    const hours = storeRef.current.settings.sweepHoursMadrid;
-    const due = dueSweepHour(
-      now,
-      hours,
-      storeRef.current.settings.lastScheduledSweepKey,
-    );
-    if (due == null) return;
-    const key = sweepKeyForHour(now, due);
-    void doSweep("scheduled", key);
+    const settings = storeRef.current.settings;
+    const hours = settings.sweepHoursMadrid;
+    const dueHour = dueSweepHour(now, hours, settings.lastScheduledSweepKey);
+    if (dueHour != null) {
+      const key = sweepKeyForHour(now, dueHour);
+      void doSweep("scheduled", key);
+      return;
+    }
+    if (
+      dueIntervalSweep(
+        now,
+        settings.sweepIntervalMinutes,
+        settings.lastIntervalSweepAt,
+      )
+    ) {
+      void doSweep("interval");
+    }
   }, [now]);
 
   function addUrlMedia(item: Omit<MediaItem, "id" | "createdAt">) {
@@ -411,6 +425,12 @@ export default function App() {
 
           <SweepPanel
             nextLabel={nextSweepLabel(now, store.settings.sweepHoursMadrid)}
+            intervalLabel={nextIntervalSweepLabel(
+              now,
+              store.settings.sweepIntervalMinutes,
+              store.settings.lastIntervalSweepAt,
+            )}
+            intervalMinutes={store.settings.sweepIntervalMinutes}
             madridClock={madridClockLabel(now)}
             sweeping={sweeping}
             lastLog={lastLog}
