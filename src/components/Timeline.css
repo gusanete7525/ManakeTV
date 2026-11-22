@@ -111,15 +111,22 @@
   right: 0.5rem;
   display: grid;
   grid-template-columns: 1fr auto;
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
-  background: color-mix(in srgb, var(--accent) 18%, var(--surface));
+  border: 1px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 72%, var(--surface));
   overflow: hidden;
   z-index: 1;
 }
 
 .timeline__slot--selected {
   border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 28%, var(--surface));
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.timeline__slot--selected .timeline__slot-time,
+.timeline__slot--selected .timeline__slot-title,
+.timeline__slot--selected .timeline__slot-remove {
+  color: var(--on-accent);
 }
 
 .timeline__slot--overlap {
@@ -135,11 +142,15 @@
   padding: 0.35rem 0.5rem;
   border: none;
   background: transparent;
-  color: var(--ink);
+  color: inherit;
   font: inherit;
   text-align: left;
   cursor: pointer;
   min-width: 0;
+}
+
+.timeline__slot:not(.timeline__slot--selected) .timeline__slot-main {
+  color: var(--ink);
 }
 
 .timeline__slot-time {

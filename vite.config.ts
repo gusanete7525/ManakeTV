@@ -4,6 +4,8 @@ import { defineConfig } from "vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // Relative asset URLs so Electron can load dist/ via file://
+  base: "./",
   server: {
     proxy: {
       // Official RTVE public RSS / API — same-origin in dev to avoid CORS.

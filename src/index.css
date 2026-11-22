@@ -13,6 +13,7 @@
   --accent: #c4a35a;
   --on-accent: #12140f;
   --glow: #3d6b5a;
+  --warn: #e0a090;
 
   font-family: var(--font-body);
   font-synthesis: none;

@@ -4,8 +4,19 @@
   gap: 0.75rem;
   border: 1px solid var(--line);
   background: var(--surface);
-  padding: 0.85rem;
-  min-height: 12rem;
+  padding: 0.875rem;
+  animation: onair-in 0.55s ease-out both;
+}
+
+@keyframes onair-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .onair__header {
@@ -14,7 +25,7 @@
 }
 
 .onair__badge {
-  font-size: 0.65rem;
+  font-size: 0.625rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -24,20 +35,21 @@
 .onair__title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 600;
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 .onair__next {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.8125rem;
   color: var(--muted);
 }
 
 .onair__stage {
   flex: 1;
-  min-height: 10rem;
-  background: color-mix(in srgb, var(--bg-deep) 80%, black);
+  min-height: 11.25rem;
+  background: var(--bg-deep);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,11 +69,13 @@
   font-size: 0.95rem;
   line-height: 1.45;
   max-width: 42ch;
+  text-align: center;
 }
 
 .onair__page {
   display: grid;
   gap: 0.65rem;
+  text-align: left;
 }
 
 .onair__page a {
@@ -74,6 +88,74 @@
 
 .onair__hint {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--muted);
+  line-height: 1.4;
+}
+
+.onair__controls {
+  display: grid;
+  gap: 0.85rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.onair__control-block {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.onair__field {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.onair__field select {
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 0.45rem 0.55rem;
+}
+
+.onair__cast-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.onair__btn {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+
+.onair__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.onair__btn--ghost {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.onair__btn--ghost:not(:disabled):hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.onair__status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--accent);
+  line-height: 1.35;
 }

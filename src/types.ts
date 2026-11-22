@@ -111,6 +111,8 @@ export interface FluxSettings {
   sweepIntervalMinutes: number;
   /** ISO timestamp of the last interval Barrido. */
   lastIntervalSweepAt?: string;
+  /** Preferred HTMLMediaElement audio output deviceId (Chromium/Electron). */
+  preferredAudioSinkId?: string;
 }
 
 export interface FluxStore {

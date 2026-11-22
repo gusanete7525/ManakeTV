@@ -343,6 +343,16 @@ export default function App() {
             slot={onAir}
             media={onAirMedia}
             nextTitle={nextTitle}
+            preferredSinkId={store.settings.preferredAudioSinkId ?? ""}
+            onPreferredSinkIdChange={(sinkId) =>
+              setStore((prev) => ({
+                ...prev,
+                settings: {
+                  ...prev.settings,
+                  preferredAudioSinkId: sinkId || undefined,
+                },
+              }))
+            }
           />
           <Timeline
             slots={slots}
