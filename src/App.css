@@ -47,7 +47,7 @@
   margin: 0.4rem 0 0;
   color: var(--muted);
   font-size: 1rem;
-  max-width: 28ch;
+  max-width: 32ch;
 }
 
 .app__air {
@@ -89,9 +89,16 @@
 .app__main {
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.75fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.8fr);
   gap: 1.25rem;
   padding: 1.25rem clamp(1rem, 3vw, 2.5rem) 1.5rem;
+  min-height: 0;
+}
+
+.app__primary {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
   min-height: 0;
 }
 
@@ -145,6 +152,12 @@
   gap: 0.65rem;
 }
 
+.placer__warn {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #e0a090;
+}
+
 .placer__submit {
   font: inherit;
   font-weight: 600;
@@ -171,7 +184,7 @@
   border-top: 1px solid var(--line);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .app__main {
     grid-template-columns: 1fr;
   }
