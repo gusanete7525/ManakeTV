@@ -18,6 +18,9 @@ Project store: `/cursor/stores/self/docs/fluxtv-plan.md`
 - **Audio output** — pick playback device via `setSinkId` / `selectAudioOutput` (Chromium / Electron).
 - **Cast to TV** — Chromecast LAN discovery in the desktop app; Miracast / Win+K as OS fallback. See [docs/cast-and-audio.md](docs/cast-and-audio.md).
 - **Windows app** — Electron + electron-builder (NSIS + portable). See [docs/windows-desktop.md](docs/windows-desktop.md).
+- **Right menu** — En antena, **Podcast TV**, Agregados (país + emisora), Favoritos, Parrilla (asistente), Barrido, Biblioteca, Fuentes.
+- **Podcast TV / Agregados** — browse documented public RSS by España + station; vignette cards (no pirate catalogs).
+- **Parrilla assistant** — guided place-slot flow; Favoritos with ★.
 
 ## UI
 

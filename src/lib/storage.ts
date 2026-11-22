@@ -1,5 +1,10 @@
 import { defaultFeeds } from "./feeds";
-import { madridDateKey, type FluxSettings, type FluxStore } from "../types";
+import {
+  madridDateKey,
+  type FluxFavorites,
+  type FluxSettings,
+  type FluxStore,
+} from "../types";
 
 const STORAGE_KEY = "fluxtv-store-v2";
 const LEGACY_KEY = "fluxtv-store-v1";
@@ -11,6 +16,10 @@ export function defaultSettings(): FluxSettings {
     sweepHoursMadrid: [10, 16, 22],
     sweepIntervalMinutes: 5,
   };
+}
+
+export function defaultFavorites(): FluxFavorites {
+  return { mediaIds: [], feedIds: [] };
 }
 
 export function emptyStore(): FluxStore {
@@ -33,6 +42,7 @@ export function emptyStore(): FluxStore {
     proposals: {},
     sweepLog: [],
     settings: defaultSettings(),
+    favorites: defaultFavorites(),
   };
 }
 
@@ -42,7 +52,9 @@ export function loadStore(): FluxStore {
     if (raw) {
       const parsed = JSON.parse(raw) as FluxStore;
       if (parsed?.version === 2) {
-        return ensureToday(mergeSettings(mergeFeeds(parsed)));
+        return ensureToday(
+          mergeFavorites(mergeSettings(mergeFeeds(parsed))),
+        );
       }
     }
     const legacy = localStorage.getItem(LEGACY_KEY);
@@ -87,6 +99,17 @@ function mergeSettings(store: FluxStore): FluxStore {
   return {
     ...store,
     settings: { ...defaultSettings(), ...store.settings },
+  };
+}
+
+function mergeFavorites(store: FluxStore): FluxStore {
+  const fav = store.favorites ?? defaultFavorites();
+  return {
+    ...store,
+    favorites: {
+      mediaIds: Array.isArray(fav.mediaIds) ? fav.mediaIds : [],
+      feedIds: Array.isArray(fav.feedIds) ? fav.feedIds : [],
+    },
   };
 }
 
